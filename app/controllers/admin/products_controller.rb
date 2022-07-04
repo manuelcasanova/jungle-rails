@@ -1,7 +1,17 @@
+require "action_view"
+include ActionView::Helpers::NumberHelper
+
 class Admin::ProductsController < ApplicationController
 
+  def show
+    @product = Product.find params[:id]
+    @price = number_to_currency(@product.price, options = { delimiter: ","} )
+  end
+  
   def index
     @products = Product.order(id: :desc).all
+    @prices = []
+    @products.each  {|item| @prices.push(item.price) }
   end
 
   def new
