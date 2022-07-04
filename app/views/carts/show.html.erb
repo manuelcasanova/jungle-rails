@@ -4,6 +4,8 @@
     <h1>My Cart</h1>
   </header>
 
+
+  <% unless enhanced_cart != nil %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -26,7 +28,6 @@
           </th>
           <th>
             <%= cart_subtotal_cents %> 
-            <%#= change here put $ before line 28%>
           </th>
         </tr>
       </tfoot>
@@ -49,5 +50,13 @@
       <% end %>
     </div>
   </div>
+
+  <% else %>
+  <div class="alert-danger">
+    <h3>There is not items in your cart. <br>
+    Click <a href="/">here</a> to find the products that you love!
+    </h3>
+  </div>
+<% end %>
 
 </section>
